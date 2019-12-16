@@ -17,5 +17,14 @@ private:
 	static DWORD WINAPI createArray(CONST LPVOID par);
 	HANDLE ath = NULL;
 	HANDLE bth = NULL;
+	
+	struct info {
+		info(HANDLE* mut, int* const Array, const char* const file, const int n)
+		: mut(mut), Array(Array), file(file), n(n) {}
+		HANDLE* mut;
+		int* const Array;
+		const char* const file;
+		const int n;
+	};	
 };
 

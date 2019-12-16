@@ -17,22 +17,14 @@ ThreadUser::~ThreadUser()
 
 void ThreadUser::FirstThread()
 {
-	void** args = new void*[4];
-	*args = &mtA;
-	*(args + 1) = A;
-	*(args + 2) = af;
-	*(args + 3) = &n;
-	ath = CreateThread(NULL, 0, createArray, args, 0, NULL);
+	info* infoA = new info(&mtA, A, af, n);
+	ath = CreateThread(NULL, 0, generateArr, infoA, 0, NULL);
 }
 
 void ThreadUser::SecondThread()
 {
-	void** args = new void*[4];
-	*args = &mtB;
-	*(args + 1) = B;
-	*(args + 2) = bf;
-	*(args + 3) = &m;
-	bth = CreateThread(NULL, 0, createArray, args, 0, NULL);
+	info* infoB = new info(&mtB, B, bf, m);
+	bth = CreateThread(NULL, 0, generateArr, infoB, 0, NULL);
 }
 
 void ThreadUser::MainProg()
