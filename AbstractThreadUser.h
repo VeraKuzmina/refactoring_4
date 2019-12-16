@@ -11,8 +11,8 @@ public:
 	virtual void FirstThread() = 0;
 	virtual void SecondThread() = 0;
 	virtual void MainProg() = 0;
-	void static creationArray(int &i, int* A);
-	int static arrayD(int i, int* A, int* B, int* D, int n, int &k);
+	void static generateRandomArray(int &i, int* A);
+	int static createArrayD(int i, int* A, int* B, int* D, int n, int &k);
 protected:
 	int n;
 	int m;

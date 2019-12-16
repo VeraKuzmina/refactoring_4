@@ -14,7 +14,7 @@ public:
 private:
 	HANDLE mtA = NULL;
 	HANDLE mtB = NULL;
-	static DWORD WINAPI generate(CONST LPVOID par);
+	static DWORD WINAPI createArray(CONST LPVOID par);
 	HANDLE ath = NULL;
 	HANDLE bth = NULL;
 };

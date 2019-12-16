@@ -27,7 +27,7 @@ AbstractThreadUser::~AbstractThreadUser()
 	delete[] D;
 }
 
-void AbstractThreadUser::creationArray(int &i, int* Arr)
+void AbstractThreadUser::generateRandomArray(int &i, int* Arr)
 {
 	int aNext;
 	bool fl = true;
@@ -41,7 +41,7 @@ void AbstractThreadUser::creationArray(int &i, int* Arr)
 	Arr[i] = aNext;
 }
 
-int AbstractThreadUser::arrayD(int i, int* A, int* B, int* D, int n, int &k)
+int AbstractThreadUser::createArrayD(int i, int* A, int* B, int* D, int n, int &k)
 {
 	if (A[i] != NULL && i != n) {
 		bool fl = false;

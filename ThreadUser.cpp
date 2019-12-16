@@ -22,7 +22,7 @@ void ThreadUser::FirstThread()
 	*(args + 1) = A;
 	*(args + 2) = af;
 	*(args + 3) = &n;
-	ath = CreateThread(NULL, 0, generate, args, 0, NULL);
+	ath = CreateThread(NULL, 0, createArray, args, 0, NULL);
 }
 
 void ThreadUser::SecondThread()
@@ -32,7 +32,7 @@ void ThreadUser::SecondThread()
 	*(args + 1) = B;
 	*(args + 2) = bf;
 	*(args + 3) = &m;
-	bth = CreateThread(NULL, 0, generate, args, 0, NULL);
+	bth = CreateThread(NULL, 0, createArray, args, 0, NULL);
 }
 
 void ThreadUser::MainProg()
@@ -44,10 +44,10 @@ void ThreadUser::MainProg()
 	while ((i+j) < (m+n))
 	{
 		WaitForSingleObject(mtA, INFINITE);
-		i = arrayD(i, A, B, D, n, k);
+		i = createArrayD(i, A, B, D, n, k);
 		ReleaseMutex(mtA);
 		WaitForSingleObject(mtB, INFINITE);
-		j = arrayD(j, B, A, D, m, k);
+		j = createArrayD(j, B, A, D, m, k);
 		ReleaseMutex(mtB);
 	}
 	for (int l = 0; l < k; l++)
@@ -55,7 +55,7 @@ void ThreadUser::MainProg()
 	dff.close();
 }
 
-DWORD WINAPI ThreadUser::generate(CONST LPVOID par)
+DWORD WINAPI ThreadUser::createArray(CONST LPVOID par)
 {
 	HANDLE mut = * (void**)par;
 	int* Array = (int *) *((void**)par + 1);
@@ -70,7 +70,7 @@ DWORD WINAPI ThreadUser::generate(CONST LPVOID par)
 	for (int i = 0; i < n; i++)
 	{
 		WaitForSingleObject(mut, INFINITE);
-		creationArray(i, Array);
+		createArrayRandomArray(i, Array);
 		ReleaseMutex(mut);
 	}
 	for (int i = 0; i < n; i++)
