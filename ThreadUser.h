@@ -1,6 +1,8 @@
 #pragma once
 #include "AbstractThreadUser.h"
-#include <windows.h>
+#include <mutex>
+#include <thread>
+#include <string>
 
 class ThreadUser :
 	public AbstractThreadUser
@@ -12,19 +14,10 @@ public:
 	void SecondThread();
 	void MainProg();
 private:
-	HANDLE mtA = NULL;
-	HANDLE mtB = NULL;
-	static DWORD WINAPI createArray(CONST LPVOID par);
-	HANDLE ath = NULL;
-	HANDLE bth = NULL;
-	
-	struct info {
-		info(HANDLE* mut, int* const Array, const char* const file, const int n)
-		: mut(mut), Array(Array), file(file), n(n) {}
-		HANDLE* mut;
-		int* const Array;
-		const char* const file;
-		const int n;
-	};	
+	std::mutex mtA;
+	std::mutex mtB;
+	void static arrayCreation(int n, const char* af, int* A, std::mutex &mtA);
+	std::thread* ath;
+	std::thread* bth;
 };
 
