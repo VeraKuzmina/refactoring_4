@@ -29,15 +29,10 @@ AbstractThreadUser::~AbstractThreadUser()
 
 void AbstractThreadUser::generateRandomArray(int &i, int* Arr)
 {
-	int aNext;
-	bool fl = true;
-	while (fl) {
-		aNext = rand() % 11 + 1;
-		fl = false;
-		for (int j = 0; j < i; j++)
-		if (Arr[j] == aNext)
-			fl = true;
-	}
+	int aNext = rand() % 11 + 1;
+	for (int j = 0; j < i; j++)
+	    while (Arr[j] == aNext)
+		    aNext = rand() % 11 + 1;
 	Arr[i] = aNext;
 }
 
