@@ -63,9 +63,8 @@ DWORD WINAPI ThreadUser::createArray(CONST LPVOID par)
 		WaitForSingleObject(mut, INFINITE);
 		generateRandomArray(i, Array);
 		ReleaseMutex(mut);
-	}
-	for (int i = 0; i < n; i++)
 		aff << Array[i] << " ";
+	}		
 	aff.close();
 	return 0;
 }
