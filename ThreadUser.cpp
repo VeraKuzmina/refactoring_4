@@ -49,13 +49,12 @@ void ThreadUser::MainProg()
 
 DWORD WINAPI ThreadUser::createArray(CONST LPVOID par)
 {
-	HANDLE mut = * (void**)par;
-	int* Array = (int *) *((void**)par + 1);
-	char* file = (char *)*((void**)par + 2);
+	info* infoD = (info*)par;
+	HANDLE *mut = infoD->mut;
+	int* const Array = infoD->Array;
+	const char* const file = infoD->file;
+	const int n = infoD->n;
 	
-	int *nn = (int *) *((void**)par + 3);
-	int n = *nn;
-
 	ofstream aff(file);
 
 	srand(time(0) + n);
